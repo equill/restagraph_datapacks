@@ -1,0 +1,77 @@
+{
+  "name": "UniversalCategorySystem",
+  "resourcestype": [
+    {
+      "name": "UcsCategory",
+      "dependent": false,
+      "description": "Top-level categories.",
+      "attributes": [
+        {
+          "name": "CatShort",
+          "description": "Abbreviated name for the category, used in constructing the CatID.",
+          "type": "text"
+        },
+        {
+          "name": "Explanation",
+          "description": "Detailed explanation of the category's name.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "UcsSubCategory",
+      "dependent":  true,
+      "description": "Subdivision of a top-level category, and in practice the top level of UCS-format filenames. The CatID is used as the UID.",
+      "attributes": [
+        {
+          "name": "Name",
+          "description": "Longer name for the category. The CategoryFull value is derived by appending this to the UcsCategory UID, with a hyphen delimeter between them, e.g. DOORS-WOOD.",
+          "type": "varchar",
+          "maxlength": 32
+        }
+      ]
+    },
+    {
+      "name": "UcsUserCategory",
+      "dependent": true,
+      "description": "An optional tail extension of the CatID block that can be used as a user defined category, microphone, perspective etc.",
+      "attributes": [
+        {
+          "name": "notes",
+          "description": "Clarifying notes about this category.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "UcsVendorCategory",
+      "dependent": true,
+      "description": "An optional head extension to the FXName block usable by vendors to define a library specific category. For example, the specific name of a gun, vehicle or location.",
+      "attributes": [
+        {
+          "name": "notes",
+          "description": "Clarifying notes about this category.",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "source-type": "UcsCategory",
+      "name": "HAS_SUBCATEGORY",
+      "target-type": "UcsSubCategory",
+      "cardinality": "1:many",
+      "reltype": "dependent",
+      "notes": "A subcategory is probably, but not necessarily, directly dependent on a top-level category."
+    },
+    {
+      "source-type": "UcsSubCategory",
+      "name": "SUBCATEGORY_OF",
+      "target-type": "UcsCategory",
+      "cardinality": "many:1",
+      "reltype": "any",
+      "notes": "A subcategory is probably, but not necessarily, directly dependent on a top-level category."
+    }
+  ]
+}
