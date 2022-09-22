@@ -1,0 +1,201 @@
+{
+  "name": "BiologicalTaxonomy",
+  "resourcetypes": [
+    {
+      "name": "TaxonomicDomains",
+      "dependent": false,
+      "description": "The highest taxonomic rank of organisms.",
+      "attributes": [
+        {
+          "name": "Notes",
+          "description": "Any descriptive notes about this domain that you might find helpful.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "TaxonomicKingdoms",
+      "dependent": true,
+      "description": "Second-highest taxonomic rank of organisms, e.g. animalia.",
+      "attributes": [
+        {
+          "name": "Notes",
+          "description": "Any descriptive notes about this kingdom that you might find helpful.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "TaxonomicPhyla",
+      "dependent": true,
+      "description": "Singular: phylum. Goes below Kingdoms in taxonomic rank.",
+      "attributes": [
+        {
+          "name": "Notes",
+          "description": "Any descriptive notes about this phylum that you might find helpful.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "TaxonomicClasses",
+      "dependent": true,
+      "description": "As distinct from the educational or socio-economic varieties.",
+      "attributes": [
+        {
+          "name": "Notes",
+          "description": "Any descriptive notes about this class that you might find helpful.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "TaxonomicOrders",
+      "dependent": true,
+      "description": "Falls below Class in taxonomic rank.",
+      "attributes": [
+        {
+          "name": "Notes",
+          "description": "Any descriptive notes about this order that you might find helpful.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "TaxonomicFamilies",
+      "dependent": true,
+      "description": "Taxonomic rank below Order.",
+      "attributes": [
+        {
+          "name": "Notes",
+          "description": "Any descriptive notes about this family that you might find helpful.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "TaxonomicGenera",
+      "dependent": true,
+      "description": "Typically used in combination with the species, to form a binomial name, e.g. Homo Sapiens.",
+      "attributes": [
+        {
+          "name": "Notes",
+          "description": "Any descriptive notes about this genus that you might find helpful.",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "TaxonomicSpecies",
+      "dependent": true,
+      "description": "The lowest of the main taxonomic ranks.",
+      "attributes": [
+        {
+          "name": "Notes",
+          "description": "Any descriptive notes about this species that you might find helpful.",
+          "type": "text"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "source-type": "TaxonomicDomains",
+      "name": "HAS_SUBRANK",
+      "target-type": "TaxonomicKingdoms",
+      "cardinality": "1:many",
+      "reltype": "dependent"
+    },
+    {
+      "source-type": "TaxonomicKingdoms",
+      "name": "SUBRANK_OF",
+      "target-type": "TaxonomicDomains",
+      "cardinality": "many:1",
+      "reltype": "any"
+    },
+    {
+      "source-type": "TaxonomicKingdoms",
+      "name": "HAS_SUBRANK",
+      "target-type": "TaxonomicPhyla",
+      "cardinality": "1:many",
+      "reltype": "dependent"
+    },
+    {
+      "source-type": "TaxonomicPhyla",
+      "name": "SUBRANK_OF",
+      "target-type": "TaxonomicKingdoms",
+      "cardinality": "many:1",
+      "reltype": "any"
+    },
+    {
+      "source-type": "TaxonomicPhyla",
+      "name": "HAS_SUBRANK",
+      "target-type": "TaxonomicClasses",
+      "cardinality": "1:many",
+      "reltype": "dependent"
+    },
+    {
+      "source-type": "TaxonomicClasses",
+      "name": "SUBRANK_OF",
+      "target-type": "TaxonomicPhyla",
+      "cardinality": "many:1",
+      "reltype": "any"
+    },
+    {
+      "source-type": "TaxonomicClasses",
+      "name": "HAS_SUBRANK",
+      "target-type": "TaxonomicOrders",
+      "cardinality": "1:many",
+      "reltype": "dependent"
+    },
+    {
+      "source-type": "TaxonomicOrders",
+      "name": "SUBRANK_OF",
+      "target-type": "TaxonomicClasses",
+      "cardinality": "many:1",
+      "reltype": "any"
+    },
+    {
+      "source-type": "TaxonomicOrders",
+      "name": "HAS_SUBRANK",
+      "target-type": "TaxonomicFamilies",
+      "cardinality": "1:many",
+      "reltype": "dependent"
+    },
+    {
+      "source-type": "TaxonomicFamilies",
+      "name": "SUBRANK_OF",
+      "target-type": "TaxonomicOrders",
+      "cardinality": "many:1",
+      "reltype": "any"
+    },
+    {
+      "source-type": "TaxonomicFamilies",
+      "name": "HAS_SUBRANK",
+      "target-type": "TaxonomicGenera",
+      "cardinality": "1:many",
+      "reltype": "dependent"
+    },
+    {
+      "source-type": "TaxonomicGenera",
+      "name": "SUBRANK_OF",
+      "target-type": "TaxonomicFamilies",
+      "cardinality": "many:1",
+      "reltype": "any"
+    },
+    {
+      "source-type": "TaxonomicGenera",
+      "name": "HAS_SUBRANK",
+      "target-type": "TaxonomicSpecies",
+      "cardinality": "1:many",
+      "reltype": "dependent"
+    },
+    {
+      "source-type": "TaxonomicSpecies",
+      "name": "SUBRANK_OF",
+      "target-type": "TaxonomicGenera",
+      "cardinality": "many:1",
+      "reltype": "any"
+    }
+  ]
+}
